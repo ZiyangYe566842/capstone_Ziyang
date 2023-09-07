@@ -27,65 +27,127 @@ format:
 
 ## Problem Statement 
 
-Survival analysis is usually considered as a collection of longitudinal analysis
-methods for interrogating data having time as an outcome variable. In general,
-survival analysis can be applied to many different problems in a variety of
-fields such as biology, medicine, engineering, marketing, social sciences or
-behavioral sciences.In the last years, machine learning (ML) has proven to be a
-great complement to traditional statistical methods. However, most of maching
-learning models are black-box models, which means they are not explainable. But
-one of the main functions in survival analysis is learning what factors are
-associated with shorter survival.Therefore, it is important to evaluate the
-effect of individual features in ml models which are black boxes. 
+Survival analysis, or reliability, is an area of statistics where we deal with
+incomplete outcome information; that is, where we may know the time to an
+outcome (death, failure of a machine part) only partially. This phenomenon is
+called _censoring_, and necessitates a special set of analytic tools. These
+analytic tools are used in a wide variety of domains, including healthcare and
+pharmaceutical industries, engineering, marketing, and social sciences. 
+
+Survival analytic models have typically been (semi-)parametric statistical regression
+models using a special loss function. Common examples are Cox proportional
+hazards regression, Weibull regression and accelerated failure time models. 
+In the last years, machine learning (ML) has proven to be a great complement to 
+traditional statistical methods. Indeed, several models have been developed that 
+use machine learning to predict survival time in the presence of censoring. 
+
+Most of maching learning models are
+black-box models, which means they are not explainable, i.e., we cannot easily
+ascertain the effect of a particular variable on the predicted outcome. However, the effect 
+of each feature on the outcome is often required, especially in regulated
+industries like pharma, finance and insurance, since it often needs to be
+explained why an individual is predicted to have shorter survival time (higher
+risk). 
+
+In this project we will explore how to estimate the explainability or
+interpretability of features in ML-based survival models, and whether this can
+be related to causal inference. We will also explore the small-sample
+variability of such estimates and how robust our interpretations may be. 
+
 
 ## Research Questions 
 
--  How can we evaluate the effect of individual features in ml models which are black boxes?
--  How to measure and compare these interpretable models when explaining the effects?
--  How variable or robust are the effect estimates?
+-  How can we evaluate the effect of individual features in ML-based survival models which are black boxes?
+-  How can the effects of features be quantified, especially in the presence of
+   interactions or non-linear effects?
+-  How variable or robust are the effect estimates in the small-sample setting?
+-  Can the estimated effects be related to causal inference concepts?
 
 
 ## Our work 
-In this paper, we review the theoretical basics of survival analysis and the
-explainability in survival models.We conduct several experiments for every
-interpretable model in order to measure their capability of explaining the
-effect.
+
+We will review the existing methods for interpretable machine learning models
+and how they can be applied to the censored data context. We will consider
+methods that can account for interactions or non-linear effects, including
+potential extensions of SHAP and LIME. We will
+investigate the statistical properties of our estimates via simulated data and
+bootstrap methods. We will then apply our methods to a real-world survival
+dataset (TBD). 
 
 # Literature Review 
 
--  Research paper about interpretable models
--  Research paper related to Model-Agnostic Methods
--  Research paper related to Neural Network Interpretation
+There is a increasing interest in interpretable machine learning models. Some
+references that we will study include:
+
+1. Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). “Why Should I Trust You?”: Explaining the Predictions of Any Classifier (arXiv:1602.04938). arXiv. https://doi.org/10.48550/arXiv.1602.04938
+2. Lundberg, S. M., & Lee, S.-I. (2017). A Unified Approach to Interpreting Model Predictions. In Advances in Neural Information Processing Systems 30 (pp. 4765–4774). Curran Associates, Inc. http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf
+3. Molnar, C. (2019). Interpretable Machine Learning. A Guide for Making Black Box Models Explainable. https://christophm.github.io/interpretable-ml-book/
+4. Lundberg, S. M., Erion, G., Chen, H., DeGrave, A., Prutkin, J. M., Nair, B., Katz, R., Himmelfarb, J., Bansal, N., Lee, S.-I., & others. (2020). From local explanations to global understanding with explainable AI for trees. Nature Machine Intelligence, 2(1), 56–67. https://doi.org/10.1038/s42256-019-0138-9
+5. Marcinkevičs, R., & Vogt, J. E. (2020). Interpretability and Explainability: A Machine Learning Zoo Mini-tour. ArXiv:2012.01805 [Cs]. http://arxiv.org/abs/2012.01805
+
+
+In the survival context, the following paper piqued our interest in this topic:
+
+1. Moncada-Torres, A., van Maaren, M. C., Hendriks, M. P., Siesling, S., & Geleijnse, G. (2021). Explainable machine learning can outperform Cox regression predictions and provide insights in breast cancer survival. Scientific Reports, 11(1), Article 1. https://doi.org/10.1038/s41598-021-86327-7
+
+There are several machine learning models that have been proposed in the
+survival context. 
+
+2. Giunchiglia, E., Nemchenko, A., & Van Der Schaar, M. (2018). RNN-SURV: A Deep Recurrent Model for Survival Analysis. In V. Kůrková, Y. Manolopoulos, B. Hammer, L. Iliadis, & I. Maglogiannis (Eds.), Artificial Neural Networks and Machine Learning – ICANN 2018 (Vol. 11141, pp. 23–32). Springer International Publishing. https://doi.org/10.1007/978-3-030-01424-7_3
+3. Lee, J., & van der Schaar, M. (2018). DeepHit: A Deep Learning Approach to Survival Analysis with Competing Risks. In Proceedings of the 2018 SIAM International Conference on Data Mining (pp. 764–772). Society for Industrial and Applied Mathematics. https://doi.org/10.1137/1.9781611975321.87
+4. Fouodo, C. J., König, I. R., Weihs, C., Ziegler, A., & Wright, M. N. (2018). Support Vector Machines for Survival Analysis with R. R Journal, 10(1).
+5. Sonabend, R., Király, F. J., Bender, A., Bischl, B., & Lang, M. (2021). mlr3proba: An R package for machine learning in survival analysis. Bioinformatics, 37(17), 2789–2791. https://doi.org/10.1093/bioinformatics/btab039
+6. Ma, B., Yan, G., Chai, B., & Hou, X. (2022). XGBLC: An improved survival prediction model based on XGBoost. Bioinformatics, 38(2), 410–418. https://doi.org/10.1093/bioinformatics/btab675
+7. Oei, R. W., Lyu, Y., Ye, L., Kong, F., Du, C., Zhai, R., Xu, T., Shen, C., He, X., Kong, L., Hu, C., & Ying, H. (2021). Progression-Free Survival Prediction in Patients with Nasopharyngeal Carcinoma after Intensity-Modulated Radiotherapy: Machine Learning vs. Traditional Statistics. Journal of Personalized Medicine, 11(8), Article 8. https://doi.org/10.3390/jpm11080787
+8. Hu, S., Fridgeirsson, E. A., van Wingen, G., & Welling, M. (2021). Transformer-Based Deep Survival Analysis. Proceedings of Machine Learning Research, 1, 1--17.
+
+
+
+There are several proposed methods for interpretable machine learning models in
+survival analysis. These include:
+
+1. Marcinkevičs, R., & Vogt, J. E. (2020). Interpretability and Explainability: A Machine Learning Zoo Mini-tour. ArXiv:2012.01805 [Cs]. http://arxiv.org/abs/2012.01805
+2. Kovalev, M. S., Utkin, L. V., & Kasimov, E. M. (2020). SurvLIME: A method for explaining machine learning survival models. Knowledge-Based Systems, 203, 106164. https://doi.org/10.1016/j.knosys.2020.106164
+3. Krzyziński, M., Spytek, M., Baniecki, H., & Biecek, P. (2023). SurvSHAP(t): Time-dependent explanations of machine learning survival models. Knowledge-Based Systems, 262, 110234. https://doi.org/10.1016/j.knosys.2022.110234
+
+Some applied examples include:
+
+1. Cui, L., Li, H., Hui, W., Chen, S., Yang, L., Kang, Y., Bo, Q., & Feng, J. (2020). A deep learning-based framework for lung cancer survival analysis with biomarker interpretation. BMC Bioinformatics, 21(1), 112. https://doi.org/10.1186/s12859-020-3431-z
+2. Hao, J., Kim, Y., Mallavarapu, T., Oh, J. H., & Kang, M. (2019). Interpretable deep neural network for cancer survival analysis by integrating genomic and clinical data. BMC Medical Genomics, 12(10), 189. https://doi.org/10.1186/s12920-019-0624-2
+
 
 
 # Method 
 
 ##  
 
-I will finish this paper under the guidance of Dr.Abhijit.
+I will finish this paper under the guidance of Dr .Abhijit Das Gupta.
 
 ##  
 
-Our paper covers many techniques of interpretable machine learning. We introduce
-the concept of interpretability and explain why interpretability is necessary.
-Then we discuss interpretable machine learning models like the regression model
-and decision tree.  Model-agnostic interpretability methods will be applied to
-any machine learning models. Some techniques explain how individual predictions
-were made, like local interpretable model-agnostic explanations (LIME) and
-Shapley values. Then we discuss the partial dependence plot, accumulated local
-effects, permutation feature importance and many other methods.
+Methods for variable importance and interpretation in machine learning models
+range from permutation-based variable importance scores to more model-agnostic
+methods like LIME and SHAP. We wil review these methods and propose extensions
+especially in the context of interactions. This will improve our understanding
+of how flexible machine learning methods that often provide improved outcome
+prediction can also be utilized for feature interpretation. Quantitative methods
+will be supplemented with graphical methods like partial dependence plots and
+other visualizations to help understand how single or multiple features can
+affect survival outcome and the relative importance of the features. 
 
 ## Data collection 
 
-Our data comes from XXXX
+We will use simulated survival data to evaluate the statistical properties of
+different interpretable machine learning methods for survival analysis.
+Simulations can be run using, among other tools, the R package `survsim`. We
+will also identify several real-world survival datasets with varying numbers of
+features to see how interpretable ML models perform in practice, with
+uncertainty being evaluated via bootstrap resampling. 
 
-# Data Analysis 
-
-We will make several plots to visualize how individual features influence the final prediction.For example, we can perform ICE plot, PDP plot,the plot of the permutation feature importance and the plot of the shapley value.
 
 # Results  (Expected)
 
-I think some methods like surrogate model can be useful, since it does not require any information about the inner workings of the black box model, only access to data and the prediction function is necessary.
-
-# Conclusions 
+We expect to provide recommendations about methods to use for interpreting
+ML-based survival models, as well as graphical tools to visualize the marginal
+and joint effects of different features on survival.  
 
