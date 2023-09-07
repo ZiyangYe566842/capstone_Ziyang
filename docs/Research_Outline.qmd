@@ -1,0 +1,91 @@
+---
+title: "Research Outline"
+author:
+- Ziyang Ye
+date: last-modified
+format:
+  html:
+    css: custom.css 
+    code-fold: true
+    number-sections: false
+    toc: true
+    embed-resources: true
+    theme:
+      light: flatly
+      dark: darkly
+    fontsize: 1.1em
+    linestretch: 1.7
+    output-file: Research_Outline.html
+    code-copy: true
+    code-line-numbers: true
+    highlight-style: github
+---
+
+
+
+# Introduction 
+
+## Problem Statement 
+
+Survival analysis is usually considered as a collection of longitudinal analysis
+methods for interrogating data having time as an outcome variable. In general,
+survival analysis can be applied to many different problems in a variety of
+fields such as biology, medicine, engineering, marketing, social sciences or
+behavioral sciences.In the last years, machine learning (ML) has proven to be a
+great complement to traditional statistical methods. However, most of maching
+learning models are black-box models, which means they are not explainable. But
+one of the main functions in survival analysis is learning what factors are
+associated with shorter survival.Therefore, it is important to evaluate the
+effect of individual features in ml models which are black boxes. 
+
+## Research Questions 
+
+-  How can we evaluate the effect of individual features in ml models which are black boxes?
+-  How to measure and compare these interpretable models when explaining the effects?
+-  How variable or robust are the effect estimates?
+
+
+## Our work 
+In this paper, we review the theoretical basics of survival analysis and the
+explainability in survival models.We conduct several experiments for every
+interpretable model in order to measure their capability of explaining the
+effect.
+
+# Literature Review 
+
+-  Research paper about interpretable models
+-  Research paper related to Model-Agnostic Methods
+-  Research paper related to Neural Network Interpretation
+
+
+# Method 
+
+##  
+
+I will finish this paper under the guidance of Dr.Abhijit.
+
+##  
+
+Our paper covers many techniques of interpretable machine learning. We introduce
+the concept of interpretability and explain why interpretability is necessary.
+Then we discuss interpretable machine learning models like the regression model
+and decision tree.  Model-agnostic interpretability methods will be applied to
+any machine learning models. Some techniques explain how individual predictions
+were made, like local interpretable model-agnostic explanations (LIME) and
+Shapley values. Then we discuss the partial dependence plot, accumulated local
+effects, permutation feature importance and many other methods.
+
+## Data collection 
+
+Our data comes from XXXX
+
+# Data Analysis 
+
+We will make several plots to visualize how individual features influence the final prediction.For example, we can perform ICE plot, PDP plot,the plot of the permutation feature importance and the plot of the shapley value.
+
+# Results  (Expected)
+
+I think some methods like surrogate model can be useful, since it does not require any information about the inner workings of the black box model, only access to data and the prediction function is necessary.
+
+# Conclusions 
+
