@@ -64,15 +64,9 @@ variability of such estimates and how robust our interpretations may be.
 -  Can the estimated effects be related to causal inference concepts?
 
 
-## Our work 
+## Our work & Discussion 
 
-We will review the existing methods for interpretable machine learning models
-and how they can be applied to the censored data context. We will consider
-methods that can account for interactions or non-linear effects, including
-potential extensions of SHAP and LIME. We will
-investigate the statistical properties of our estimates via simulated data and
-bootstrap methods. We will then apply our methods to a real-world survival
-dataset (TBD). 
+We will review the existing methods for interpretable machine learning models and how they can be applied to the censored data context. We will consider methods that can account for interactions or non-linear effects, including potential extensions of SHAP and LIME. We will investigate the statistical properties of our estimates via simulated data and bootstrap methods. We will then apply our methods to a real-world survival dataset (TBD). 
 
 # Literature Review 
 
@@ -115,7 +109,7 @@ Some applied examples include:
 1. Cui, L., Li, H., Hui, W., Chen, S., Yang, L., Kang, Y., Bo, Q., & Feng, J. (2020). A deep learning-based framework for lung cancer survival analysis with biomarker interpretation. BMC Bioinformatics, 21(1), 112. https://doi.org/10.1186/s12859-020-3431-z
 2. Hao, J., Kim, Y., Mallavarapu, T., Oh, J. H., & Kang, M. (2019). Interpretable deep neural network for cancer survival analysis by integrating genomic and clinical data. BMC Medical Genomics, 12(10), 189. https://doi.org/10.1186/s12920-019-0624-2
 
-
+We will take advantages of interprable machine learning models that can explain interactions or non-linear effects, like SHAP and LIME. We will investigate the statistical properties of our estimates via simulated data and bootstrap methods. We will apply our methods to a real-world survival dataset. 
 
 # Method 
 
@@ -151,3 +145,22 @@ We expect to provide recommendations about methods to use for interpreting
 ML-based survival models, as well as graphical tools to visualize the marginal
 and joint effects of different features on survival.  
 
+# Reference List(Appendix)
+1. Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). “Why Should I Trust You?”: Explaining the Predictions of Any Classifier (arXiv:1602.04938). arXiv. https://doi.org/10.48550/arXiv.1602.04938
+2. Lundberg, S. M., & Lee, S.-I. (2017). A Unified Approach to Interpreting Model Predictions. In Advances in Neural Information Processing Systems 30 (pp. 4765–4774). Curran Associates, Inc. http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf
+3. Molnar, C. (2019). Interpretable Machine Learning. A Guide for Making Black Box Models Explainable. https://christophm.github.io/interpretable-ml-book/
+4. Lundberg, S. M., Erion, G., Chen, H., DeGrave, A., Prutkin, J. M., Nair, B., Katz, R., Himmelfarb, J., Bansal, N., Lee, S.-I., & others. (2020). From local explanations to global understanding with explainable AI for trees. Nature Machine Intelligence, 2(1), 56–67. https://doi.org/10.1038/s42256-019-0138-9
+5. Marcinkevičs, R., & Vogt, J. E. (2020). Interpretability and Explainability: A Machine Learning Zoo Mini-tour. ArXiv:2012.01805 [Cs]. http://arxiv.org/abs/2012.01805
+6. Moncada-Torres, A., van Maaren, M. C., Hendriks, M. P., Siesling, S., & Geleijnse, G. (2021). Explainable machine learning can outperform Cox regression predictions and provide insights in breast cancer survival. Scientific Reports, 11(1), Article 1. https://doi.org/10.1038/s41598-021-86327-7
+7. Giunchiglia, E., Nemchenko, A., & Van Der Schaar, M. (2018). RNN-SURV: A Deep Recurrent Model for Survival Analysis. In V. Kůrková, Y. Manolopoulos, B. Hammer, L. Iliadis, & I. Maglogiannis (Eds.), Artificial Neural Networks and Machine Learning – ICANN 2018 (Vol. 11141, pp. 23–32). Springer International Publishing. https://doi.org/10.1007/978-3-030-01424-7_3
+8. Lee, J., & van der Schaar, M. (2018). DeepHit: A Deep Learning Approach to Survival Analysis with Competing Risks. In Proceedings of the 2018 SIAM International Conference on Data Mining (pp. 764–772). Society for Industrial and Applied Mathematics. https://doi.org/10.1137/1.9781611975321.87
+9. Fouodo, C. J., König, I. R., Weihs, C., Ziegler, A., & Wright, M. N. (2018). Support Vector Machines for Survival Analysis with R. R Journal, 10(1).
+10. Sonabend, R., Király, F. J., Bender, A., Bischl, B., & Lang, M. (2021). mlr3proba: An R package for machine learning in survival analysis. Bioinformatics, 37(17), 2789–2791. https://doi.org/10.1093/bioinformatics/btab039
+11. Ma, B., Yan, G., Chai, B., & Hou, X. (2022). XGBLC: An improved survival prediction model based on XGBoost. Bioinformatics, 38(2), 410–418. https://doi.org/10.1093/bioinformatics/btab675
+12. Oei, R. W., Lyu, Y., Ye, L., Kong, F., Du, C., Zhai, R., Xu, T., Shen, C., He, X., Kong, L., Hu, C., & Ying, H. (2021). Progression-Free Survival Prediction in Patients with Nasopharyngeal Carcinoma after Intensity-Modulated Radiotherapy: Machine Learning vs. Traditional Statistics. Journal of Personalized Medicine, 11(8), Article 8. https://doi.org/10.3390/jpm11080787
+13. Hu, S., Fridgeirsson, E. A., van Wingen, G., & Welling, M. (2021). Transformer-Based Deep Survival Analysis. Proceedings of Machine Learning Research, 1, 1--17.
+14. Marcinkevičs, R., & Vogt, J. E. (2020). Interpretability and Explainability: A Machine Learning Zoo Mini-tour. ArXiv:2012.01805 [Cs]. http://arxiv.org/abs/2012.01805
+15. Kovalev, M. S., Utkin, L. V., & Kasimov, E. M. (2020). SurvLIME: A method for explaining machine learning survival models. Knowledge-Based Systems, 203, 106164. https://doi.org/10.1016/j.knosys.2020.106164
+16. Krzyziński, M., Spytek, M., Baniecki, H., & Biecek, P. (2023). SurvSHAP(t): Time-dependent explanations of machine learning survival models. Knowledge-Based Systems, 262, 110234. https://doi.org/10.1016/j.knosys.2022.110234
+17. Cui, L., Li, H., Hui, W., Chen, S., Yang, L., Kang, Y., Bo, Q., & Feng, J. (2020). A deep learning-based framework for lung cancer survival analysis with biomarker interpretation. BMC Bioinformatics, 21(1), 112. https://doi.org/10.1186/s12859-020-3431-z
+18. Hao, J., Kim, Y., Mallavarapu, T., Oh, J. H., & Kang, M. (2019). Interpretable deep neural network for cancer survival analysis by integrating genomic and clinical data. BMC Medical Genomics, 12(10), 189. https://doi.org/10.1186/s12920-019-0624-2
