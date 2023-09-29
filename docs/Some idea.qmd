@@ -1,0 +1,53 @@
+---
+title: "Rough Ideas"
+author:
+- Ziyang Ye
+date: last-modified
+bibliography: Capstone.bib
+bibliographystyle: plain
+format:
+  html:
+    css: custom.css 
+    code-fold: true
+    number-sections: false
+    toc: true
+    embed-resources: true
+    theme:
+      light: flatly
+      dark: darkly
+    fontsize: 1.1em
+    linestretch: 1.7
+    output-file: Rough_Ideas.html
+    code-copy: true
+    code-line-numbers: true
+    highlight-style: github
+---
+
+
+# some idea
+Question：How to measure and compare? How to select the best model? How can we trust the explaination of the model?
+
+Idea:
+
+1. combination of several loss function.linearly combined.
+
+2. I am thinking about one thing. When we compute the feature importance, we want to know which feature have a bigger
+influence to our model. Here comes question: Is that possible the feature importance is not static.I mean maybe the
+importance of one factor can change over time. In one single dataset, we make a interetable machine learning and get 
+the feature importance. For example, I choose one feature, maybe for a small subset of this data, this feature plays a
+important role for the prediction. As for other cases in the dataset, this feature is useless.Features are commonly depend on each other.
+The interactions between different features so as the feature importance. Is there interactions between feature importance?
+If the feature importance is not stable, how can we trust the explain of model.
+
+3. As for surrogate model, after we get the prediction y^ of one black box model. Can we use several interpretable machine learning model to 
+explain it rather than one single model.Then we can assign weight to each interpretable model based on their accuracy to the y^.
+when their prediction is more close to y^,we can assign more weight on them. Then make a selection, delete some bad models.
+Then we vote. Every model have a chance to vote for the result. The combination of their voting result can be a final result.
+
+4. As for surrogate model, after we get the prediction y^ of one black box model.The y^ is biased.Even if we train a surrogate model based
+on y^, which means we predict the prediction. There is a limit for the model performance. And this limit is up to the accuracy of black box model.
+Based on it, we can never explain the ground truth y. We only explain this specific black box model —— y^.
+So how about we take the y^ as an input.I mean we can consider the y^ as a new feature and assign this feature a weight based on its accuracy.
+We train the interpretable machine learning models base on the original dataset X and add new column y^, to predict the ground truth y.
+Then maybe it's not enough,we can also do a loop for this. 
+

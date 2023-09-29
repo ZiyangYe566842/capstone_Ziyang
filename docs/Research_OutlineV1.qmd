@@ -3,6 +3,8 @@ title: "Research Outline"
 author:
 - Ziyang Ye
 date: last-modified
+bibliography: Capstone.bib
+bibliographystyle: plain
 format:
   html:
     css: custom.css 
@@ -70,14 +72,12 @@ We will review the existing methods for interpretable machine learning models an
 
 # Literature Review 
 
-#### interprable machine learning
-
-More and more Machine learning models are applied into 
-a variety of fields in order to achieve better predictive results. 
+More and more Machine learning models are applied to 
+a variety of fields to achieve better predictive results. 
 However, the majority of machine learning models lack 
 interpretability.
-As Molnar(2019) mentioned,,machine learning models are 
-even mostly black-box models, which raises concerns about trust and reliability[1].
+Machine learning models are 
+mostly black-box models, which raises concerns about trust and reliability.
 Determining the impact of a specific variable on the 
 predicted outcome is not straightforward. 
 Nonetheless, understanding the influence of each 
@@ -87,127 +87,106 @@ pharmaceuticals, finance, and insurance, as there is often a need
 to provide explanations for predictions, 
 particularly when forecasting shorter survival times 
 (indicating higher risk) for individuals.
-Therefore,there is a increasing interest in interpretable machine learning models because 
-understanding the reasons behind these black-box models is improtant.
+Therefore, there is an increasing interest in interpretable machine-learning models because 
+understanding the reasons behind these black-box models is important.
 
-#### Local Surrogate (LIME) && SHAP
+#### Interpretable Machine Learning
 
-The Ribeiro(2016) propose LIME, a local surrogate model which is used 
-for expain the individual predictions[2].
-LIME generate dataset that includes perturbed samples along with 
+Explainable or interpretable machine learning represents a machine learning model's capacity to offer comprehensible insights into how it arrives at decisions. Models with interpretability, such as decision trees, decision rules, and linear regression, can explain predictions. The interpretability is fundamental in guaranteeing the transparency and reliability of AI and machine learning models across diverse real-world scenarios.
+
+#### Local Surrogate (LIME)
+
+Ribeiro(2016) proposes LIME, a local surrogate model that is used 
+to explain individual predictions[@ribeiro_why_2016]. Rather than train a global surrogate model, LIME concentrates on training local surrogate models to explain individual predictions.LIME assesses the impact on predictions by introducing various data variations to the machine learning model.
+LIME generates a dataset that includes perturbed samples along with 
 the corresponding predictions made by the black box model.
 In this new dataset, LIME proceeds to train an interpretable model, 
-assigning weights based on the proximity of sampled instances.
-The most advantage of the surrogate model is that it doesn't require 
-the information of the inner working in the black box model.Only the
-input dataset and outcome of the prediction is required.However, the 
-big problem is the instability of the explanations. However,in an article,
+assigning weights based on the proximity of sampled instances. The interpretable model can be anything, such as Lasso or a decision tree. The learned model should be a good approximation of the machine learning model predictions locally.
+The biggest advantage of the surrogate model is that it doesn't require 
+information on the inner workings of the black box model. Only the
+input dataset and outcome of the prediction are required. However, the 
+big problem is the instability of the explanations. However, in an article,
 Alvarez-Melis(2018) showed that the explanations of two very close 
-points varied greatly in a simulated setting[3]. If you repeat the sampling process, 
-then the explantions that come out can be different.
+points varied greatly in a simulated setting[@alvarez-melis_robustness_2018]. If you repeat the sampling process, 
+then the explanations that come out can be different.
 
-In 2017, the Lundberg propose a Unified Approach to Interpreting Model 
-Predictions[4], which is named SHAP(SHapley Additive exPlanations).
-In common, SHAP is based on the optimal Shapley values.SHAP assigns 
-each feature an importance value for a 
-particular prediction. Its novel components include: 
+#### SHAP
+In 2017, Lundberg proposed a Unified Approach to the Interpreting Model 
+Predictions[@lundberg_unified_2017], which is named SHAP(Shapley Additive exPlanations).
+In common, SHAP is based on the optimal Shapley values.
+The goal of SHAP is to elucidate the prediction of an instance by assessing the impact of each feature on that prediction. This explanation method leverages Shapley values, which are derived from the principles of coalitional game theory, to compute these feature contributions.
+Its novel components include: 
 (1) the identification of a new class of additive feature 
-importance measures, and 
+importance measures
 (2) theoretical results showing there is a unique solution 
 in this class with a set of desirable properties.
-SHAP connects LIME and Shapley values.
 The predictions are evenly distributed across the feature values, 
 which yield contrastive explanations that compare the 
 prediction with the average prediction.
 if features are dependent, e.g. correlated, this leads to 
-putting too much weight on unlikely data points.
+putting too much weight on valueless data points.
 
 #### Other Explainable machine learning models
-In 2020,Lundberg propose an improved tree-based model, which has a better 
-interpretability[5].A polynomial time 
+A variety of methods of explainability are important for survival analysis because survival data involve time-to-event information, censoring, and time-dependent effects. Specialized explainability methods are required to explain complex survival models, identify important features, and provide meaningful insights for healthcare, risk assessment, and clinical decision-making.
+
+In 2020, Lundberg proposed an improved tree-based model, which has a better 
+interpretability[@lundberg_local_2020].A polynomial time 
 algorithm is applied to compute optimal explanations based on game theory.
-Combining many local explanations of each prediction,which
+Combining many local explanations of each prediction, which
 also include the Shapley Value.
 
-In a review article[6],Marcinkevičs(2020) mentioned an intrinsically interpretable neural network model 
+In a review article[@marcinkevics_interpretability_2023], Marcinkevičs(2020) mentioned an intrinsically interpretable neural network model 
 that allows disentangling contributions of 
 individual predictor variables or basis concepts. Self-explaining neural networks (SENN) 
-[7] are motivated by explicitness, faithfulness, and stability properties 
-– three desiderata for interpretability.SENNs shows a straightforward local model 
-behavior with high complexity and nonlinearity on a global scale.The regressors 
+[@alvarez_melis_towards_2018] are motivated by explicitness, faithfulness, and stability properties 
+– three desiderata for interpretability.SENNs show a straightforward local model 
+behavior with high complexity and nonlinearity on a global scale. The regressors 
 serve as effect modifiers in their own right, and the framework is enhanced 
 with interpretable foundational concepts that are defined based on the raw inputs.
 
-#### Interpretable machine learning in survival context
+#### Interpretable machine learning in a survival context
 
-There are several machine learning models that have been proposed in the
-survival context. Many research paper piqued our interest in this topic.
-In 2021, Moncada‑Torres writes an article that discusses the application 
-of how explainable machine learning model can outperform the coxregression 
-predictions in breast cancer survival[8].
-Giunchiglia(2018) proosed a new recurrent neural network model 
-for personalized survival analysis called rnn-surv[9].
+Several machine learning models have been proposed in the
+survival context. Many research papers piqued our interest in this topic.
+In 2021, Moncada‑Torres wrote an article that discusses the application 
+of how an explainable machine learning model can outperform the Cox regression 
+predictions in breast cancer survival[@moncada-torres_explainable_2021].
+Giunchiglia(2018) proposed a new recurrent neural network model 
+for personalized survival analysis called rnn-surv[@kurkova_rnn-surv_2018].
 At each time step, the network receives input that includes the patient's 
-characteristics and the time step identifier.It generates 
+characteristics and the time step identifier. It generates 
 an embedding and outputs the survival function's value. 
 Finally, these survival function values are combined linearly to calculate the singular risk score.
-Césaire J. K. Fouodo(2018) describe survival support vector machines[10] and their implementation, 
+Césaire J. K. Fouodo(2018) describe survival support vector machines[@fouodo_support_2018] and their implementation, 
 provide examples and compare the prediction performance with the Cox proportional hazards model, 
-random survival forests and gradient boosting using several real datasets.Sonabend[11] provide 
+random survival forests and gradient boosting using several real datasets.Sonabend[@sonabend2021mlr3proba] provide 
 an R package for machine learning in survival analysis called mlr3proba.
-Baoshan Ma(2022) proposed an improved survival prediction model based on XGBoost framework called XGBLC[12], 
+Baoshan Ma(2022) proposed an improved survival prediction model based on the XGBoost framework called XGBLC[@ma_xgblc_2022], 
 which used Lasso-Cox to enhance the ability to analyze high-dimensional genomic data.
-Shi Hu(2021) proposed a new Transformer-based survival model which estimates the patient-specific survival distribution.
-Using ordinal regression to optimize the survival probabilities over time, and penalize randomized discordant pairs[13].
-A lot of numerical experiments demonstrate the efficiency of the application of interpretable machine learning in survival context.
+Shi Hu(2021) proposed a new Transformer-based survival model that estimates the patient-specific survival distribution.
+Using ordinal regression to optimize the survival probabilities over time, and penalize randomized discordant pairs[@hu_transformer-based_2021].
+A lot of numerical experiments demonstrate the efficiency of the application of interpretable machine learning in a survival context.
 
 #### Methods for interpretable machine learning models
 There are several proposed methods for interpretable machine learning models in
-survival analysis. Maxim S. Kovalev(2020) proposed a new method called SurvLIME[14] 
-for explaining machine learning survival model, which can be considered an extension 
+survival analysis. Maxim S. Kovalev(2020) proposed a new method called SurvLIME[@kovalev_survlime_2020] 
+for explaining the machine learning survival model, which can be considered an extension 
 or modification of the well-known method LIME.
 Mateusz Krzyziński(2023) introduces SurvSHAP(t), the first time-dependent explanation 
-that allows for interpreting survival black-box models[15]. 
-It is based on SHapley Additive exPlanations with solid 
+that allows for interpreting survival black-box models[@krzyzinski_survshapt_2023]. 
+It is based on Shapley Additive Explanations with solid 
 theoretical foundations and a broad adoption among machine learning practitioners.
 ### Some application
 Interpretable machine learning is adopted as a useful tool in a variety of domains.
-Lei Cui（2020）have propose a survival analysis system that takes advantage of recently emerging deep learning
-techniques.Extensive experiments show that the proposed survival model has excellent predictive power for a public
-lung cancer dataset in terms of two commonly used metrics: log-rank test (p-value) of the
-Kaplan-Meier estimate and concordance index [16].
+Lei Cui（2020） has proposed a survival analysis system that takes advantage of recently emerging deep learning
+techniques. Extensive experiments show that the proposed survival model has excellent predictive power for a public
+lung cancer dataset in terms of two commonly used metrics: the log-rank test (p-value) of the
+Kaplan-Meier estimate and concordance index [@cui_deep_2020].
 
-Currently, many researchers have proposed several useful mehtods and improved models to explain the 
-black box model.However, they don't provide a useful way to measure and quantitize the efficiency of
-these interpretable models.We need to find out a solid way to select the best interpretable model.In our work,
-we will do the comparative study for these models.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Currently, many researchers have proposed several useful methods and improved models to explain the 
+black box model. However, they don't provide a useful way to measure and quantify the efficiency of
+these interpretable models. We need to find a solid way to select the best interpretable model. In our work,
+we will do a comparative study of these models.
 
 
 # Method 
@@ -257,52 +236,3 @@ The datasets contains transactions made by credit cards in September 2013 by eur
 We expect to provide recommendations about methods to use for interpreting
 ML-based survival models, as well as graphical tools to visualize the marginal
 and joint effects of different features on survival.  
-
-# some idea
-Question：How to measure and compare? How to select the best model? How can we trust the explaination of the model
-Idea:
-1. combination of several loss function.linearly combined.
-2. I am thinking about one thing. When we compute the feature importance, we want to know which feature have a bigger
-influence to our model. Here comes question: Is that possible the feature importance is not static.I mean maybe the
-importance of one factor can change over time. In one single dataset, we make a interetable machine learning and get 
-the feature importance. For example, I choose one feature, maybe for a small subset of this data, this feature plays a
-important role for the prediction. As for other cases in the dataset, this feature is useless.Features are commonly depend on each other.
-The interactions between different features so as the feature importance. Is there interactions between feature importance?
-If the feature importance is not stable, how can we trust the explain of model.
-3. As for surrogate model, after we get the prediction y^ of one black box model. Can we use several interpretable machine learning model to 
-explain it rather than one single model.Then we can assign weight to each interpretable model based on their accuracy to the y^.
-when their prediction is more close to y^,we can assign more weight on them. Then make a selection, delete some bad models.
-Then we vote. Every model have a chance to vote for the result. The combination of their voting result can be a final result.
-4. As for surrogate model, after we get the prediction y^ of one black box model.The y^ is biased.Even if we train a surrogate model based
-on y^, which means we predict the prediction. There is a limit for the model performance. And this limit is up to the accuracy of black box model.
-Based on it, we can never explain the ground truth y. We only explain this specific black box model —— y^.
-So how about we take the y^ as an input.I mean we can consider the y^ as a new feature and assign this feature a weight based on its accuracy.
-We train the interpretable machine learning models base on the original dataset X and add new column y^, to predict the ground truth y.
-Then maybe it's not enough,we can also do a loop for this. 
-
-
-
-# Reference List(Appendix)
-1. Molnar, C. (2019). Interpretable Machine Learning. A Guide for Making Black Box Models Explainable. https://christophm.github.io/interpretable-ml-book/
-2. Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). “Why Should I Trust You?”: Explaining the Predictions of Any Classifier (arXiv:1602.04938). arXiv. https://doi.org/10.48550/arXiv.1602.04938
-3. Alvarez-Melis, David, and Tommi S. Jaakkola. “On the robustness of interpretability methods.” arXiv preprint arXiv:1806.08049 (2018).
-4. Lundberg, S. M., & Lee, S.-I. (2017). A Unified Approach to Interpreting Model Predictions. In Advances in Neural Information Processing Systems 30 (pp. 4765–4774). Curran Associates, Inc. http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf
-5. Lundberg, S. M., Erion, G., Chen, H., DeGrave, A., Prutkin, J. M., Nair, B., Katz, R., Himmelfarb, J., Bansal, N., Lee, S.-I., & others. (2020). From local explanations to global understanding with explainable AI for trees. Nature Machine Intelligence, 2(1), 56–67. https://doi.org/10.1038/s42256-019-0138-9
-6. Marcinkevičs, R., & Vogt, J. E. (2020). Interpretability and Explainability: A Machine Learning Zoo Mini-tour. ArXiv:2012.01805 [Cs]. http://arxiv.org/abs/2012.01805
-7. D. Alvarez-Melis and T. S. Jaakkola, “Towards robust interpretability with self-explaining neural networks,” in Advances in Neural Information Processing Systems 31: Annual Conference on Neural Information Processing Systems, pp. 7786–7795, 2018.
-8. Moncada-Torres, A., van Maaren, M. C., Hendriks, M. P., Siesling, S., & Geleijnse, G. (2021). Explainable machine learning can outperform Cox regression predictions and provide insights in breast cancer survival. Scientific Reports, 11(1), Article 1. https://doi.org/10.1038/s41598-021-86327-7
-9. Giunchiglia, E., Nemchenko, A., & Van Der Schaar, M. (2018). RNN-SURV: A Deep Recurrent Model for Survival Analysis. In V. Kůrková, Y. Manolopoulos, B. Hammer, L. Iliadis, & I. Maglogiannis (Eds.), Artificial Neural Networks and Machine Learning – ICANN 2018 (Vol. 11141, pp. 23–32). Springer International Publishing. https://doi.org/10.1007/978-3-030-01424-7_3
-10.Fouodo, C. J., König, I. R., Weihs, C., Ziegler, A., & Wright, M. N. (2018). Support Vector Machines for Survival Analysis with R. R Journal, 10(1).
-11. Sonabend, R., Király, F. J., Bender, A., Bischl, B., & Lang, M. (2021). mlr3proba: An R package for machine learning in survival analysis. Bioinformatics, 37(17), 2789–2791. https://doi.org/10.1093/bioinformatics/btab039
-12. Ma, B., Yan, G., Chai, B., & Hou, X. (2022). XGBLC: An improved survival prediction model based on XGBoost. Bioinformatics, 38(2), 410–418. https://doi.org/10.1093/bioinformatics/btab675
-13. Hu, S., Fridgeirsson, E. A., van Wingen, G., & Welling, M. (2021). Transformer-Based Deep Survival Analysis. Proceedings of Machine Learning Research, 1, 1--17.
-14. Kovalev, M. S., Utkin, L. V., & Kasimov, E. M. (2020). SurvLIME: A method for explaining machine learning survival models. Knowledge-Based Systems, 203, 106164. https://doi.org/10.1016/j.knosys.2020.106164
-15. Krzyziński, M., Spytek, M., Baniecki, H., & Biecek, P. (2023). SurvSHAP(t): Time-dependent explanations of machine learning survival models. Knowledge-Based Systems, 262, 110234. https://doi.org/10.1016/j.knosys.2022.110234
-16. Cui, L., Li, H., Hui, W., Chen, S., Yang, L., Kang, Y., Bo, Q., & Feng, J. (2020). A deep learning-based framework for lung cancer survival analysis with biomarker interpretation. BMC Bioinformatics, 21(1), 112. https://doi.org/10.1186/s12859-020-3431-z
-
-
-18. Hao, J., Kim, Y., Mallavarapu, T., Oh, J. H., & Kang, M. (2019). Interpretable deep neural network for cancer survival analysis by integrating genomic and clinical data. BMC Medical Genomics, 12(10), 189. https://doi.org/10.1186/s12920-019-0624-2
-
-##not fund Lee, J., & van der Schaar, M. (2018). DeepHit: A Deep Learning Approach to Survival Analysis with Competing Risks. In Proceedings of the 2018 SIAM International Conference on Data Mining (pp. 764–772). Society for Industrial and Applied Mathematics. https://doi.org/10.1137/1.9781611975321.87
-###bad12. Oei, R. W., Lyu, Y., Ye, L., Kong, F., Du, C., Zhai, R., Xu, T., Shen, C., He, X., Kong, L., Hu, C., & Ying, H. (2021). Progression-Free Survival Prediction in Patients with Nasopharyngeal Carcinoma after Intensity-Modulated Radiotherapy: Machine Learning vs. Traditional Statistics. Journal of Personalized Medicine, 11(8), Article 8. https://doi.org/10.3390/jpm11080787
-###bad14. Marcinkevičs, R., & Vogt, J. E. (2020). Interpretability and Explainability: A Machine Learning Zoo Mini-tour. ArXiv:2012.01805 [Cs]. http://arxiv.org/abs/2012.01805
